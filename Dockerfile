@@ -1,4 +1,4 @@
-FROM sha1/node:7.1.0
+FROM sha1/node:7.5.0
 MAINTAINER developer@detalytics.com
 
 ENV NGINX_VERSION 1.10.3-1~jessie
