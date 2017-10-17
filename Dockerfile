@@ -6,7 +6,7 @@ ENV NJS_VERSION   1.12.1.0.1.10-1~stretch
 
 RUN set -x \
 	&& apt-get update \
-	&& apt-get install --no-install-recommends --no-install-suggests -y gnupg1 \
+	&& apt-get install --no-install-recommends --no-install-suggests -y gnupg2 \
 	&& \
 	NGINX_GPGKEY=573BFD6B3D8FBC641079A6ABABF5BD827BD9BF62; \
 	found=''; \
@@ -20,7 +20,7 @@ RUN set -x \
 		apt-key adv --keyserver "$server" --keyserver-options timeout=10 --recv-keys "$NGINX_GPGKEY" && found=yes && break; \
 	done; \
 	test -z "$found" && echo >&2 "error: failed to fetch GPG key $NGINX_GPGKEY" && exit 1; \
-	apt-get remove --purge --auto-remove -y gnupg1 && rm -rf /var/lib/apt/lists/* \
+	apt-get remove --purge --auto-remove -y gnupg2 && rm -rf /var/lib/apt/lists/* \
 	&& dpkgArch="$(dpkg --print-architecture)" \
 	&& nginxPackages=" \
 		nginx=${NGINX_VERSION} \
