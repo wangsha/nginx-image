@@ -1,8 +1,8 @@
 FROM python:2-slim
 MAINTAINER developer@detalytics.com
 
-ENV NGINX_VERSION 1.12.1-1~stretch
-ENV NJS_VERSION   1.12.1.0.1.10-1~stretch
+ENV NGINX_VERSION 1.12.1-1~jessie
+ENV NJS_VERSION   1.12.1.0.1.10-1~jessie
 
 RUN set -x \
 	&& apt-get update \
@@ -32,13 +32,13 @@ RUN set -x \
 	&& case "$dpkgArch" in \
 		amd64|i386) \
 # arches officialy built by upstream
-			echo "deb http://nginx.org/packages/debian/ stretch nginx" >> /etc/apt/sources.list \
+			echo "deb http://nginx.org/packages/debian/ jessie nginx" >> /etc/apt/sources.list \
 			&& apt-get update \
 			;; \
 		*) \
 # we're on an architecture upstream doesn't officially build for
 # let's build binaries from the published source packages
-			echo "deb-src http://nginx.org/packages/debian/ stretch nginx" >> /etc/apt/sources.list \
+			echo "deb-src http://nginx.org/packages/debian/ jessie nginx" >> /etc/apt/sources.list \
 			\
 # new directory for storing sources and .deb files
 			&& tempDir="$(mktemp -d)" \
